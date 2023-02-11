@@ -36,3 +36,33 @@ find.even.number <- function(max_number){
   }
   
 }
+
+find.even.number(20)
+
+
+# 传递多个参数，并且对参数进行指定
+new.find.even.number <- function(min_number, max_number){
+  
+  for (num in min_number : max_number){
+    
+    if (num %% 2 == 0){
+      
+      print(num)
+      
+    }
+    
+  }
+  
+}
+
+# 传递的时候指定参数值
+new.find.even.number(max_number = 100, min_number = 50)
+
+
+# 懒惰计算
+non.cal <- function(x){
+  
+  print(10)
+  
+}
+non.cal()
