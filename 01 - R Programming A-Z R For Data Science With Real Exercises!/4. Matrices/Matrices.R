@@ -77,9 +77,49 @@ Games["DerrickRose", "2011"]
 
 # FieldGoals
 FieldGoals
-
 FieldGoals / Games
-
 round(FieldGoals / Games, 2)
-
 round(MinutesPlayed / Games, 2)
+
+
+
+# 了解 matplot函数
+?matplot
+
+matplot(FieldGoals)
+matplot(t(FieldGoals))
+
+matplot(t(FieldGoals/Games), type = "b", pch = 15:18, col=c(1:4, 6))
+legend("bottomleft", inset = 0.01, legend = Players, col = c(1:4, 6), pch = 15 : 18, horiz = F)
+
+
+
+# 子集 sebsetting
+large_set <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+small_set <- large_set[c(1:3)]
+small_set
+
+Games
+Games[1:3, 6:10]
+Games[c(1, 10)]
+Games[c(1, 10),]
+Games[, c("2008", "2013")]
+
+
+
+# 可视化
+Data <- MinutesPlayed[1:3, ]
+matplot(t(Data), type = "b", pch = 15 : 18, col = c(1:4, 6))
+legend("bottomleft", inset = 0.01, legend = Players, col = c(1:4, 6), pch = 15 : 18, horiz = F)
+Data
+
+
+myplot <- function(data, rows){
+  Data <- Points[rows, , drop = F]
+  matplot(t(Data), type = "b", pch = 15 : 18, col = c(1:4, 6))
+  legend("bottomleft", inset = 0.01, legend = Players, col = c(1:4, 6), pch = 15 : 18, horiz = F)
+}
+
+myplot(Salary, 1:2)
+
+myplot(FieldGoals / Games, 1)
