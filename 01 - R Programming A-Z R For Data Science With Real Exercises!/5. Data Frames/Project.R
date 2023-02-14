@@ -101,4 +101,35 @@ qplot(data = population_df, x = Internet.users, y = Birth.rate, size = I(3))
 qplot(data = population_df, x = Internet.users, y = Birth.rate, colour = Income.Group, size = I(3))
 
 
-# 
+# 构建 data frame
+build_df <- data.frame(Countries_2012_Dataset, Codes_2012_Dataset, Regions_2012_Dataset)
+is.data.frame(build_df)
+head(build_df)
+colnames(build_df) <- c("Countries", "Codes", "Regions")
+head(build_df)
+
+# 首先移除build_df
+rm(build_df)
+
+build_df_colnames <- data.frame(Country = Countries_2012_Dataset, Codes = Codes_2012_Dataset, Regions = Regions_2012_Dataset)
+head(build_df_colnames)
+
+
+# merge 数据集
+head(population_df)
+head(build_df_colnames)
+
+# 开始进行合并
+merge_df <- merge(population_df, build_df_colnames, by.x = "Country.Code", by.y = "Codes")
+head(merge_df)
+
+merge_df$Country <- NULL  # 删除重复列
+merge_df$xyz <- NULL  # 将原先测试用的列也删除了
+head(merge_df)
+
+
+
+# 绘图 - 续
+qplot(data = merge_df, x = Internet.users, y = Birth.rate, colour = Regions, size = I(5), shape = I(17))
+qplot(data = merge_df, x = Internet.users, y = Birth.rate, colour = Regions, size = I(5), shape = I(17), alpha = I(0.7))
+qplot(data = merge_df, x = Internet.users, y = Birth.rate, colour = Regions, size = I(5), shape = I(17), alpha = I(0.7), main = "Birth Rate v.s. Internet Users")
